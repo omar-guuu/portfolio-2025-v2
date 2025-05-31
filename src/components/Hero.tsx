@@ -3,12 +3,57 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
+interface TechIconProps {
+  name: string;
+  icon: string;
+}
+
+function TechIcon({ name, icon }: TechIconProps) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.1 }}
+      className="flex flex-col items-center group relative"
+    >      <Image
+        src={`/images/tech/${icon}`}
+        alt={name}
+        width={48}
+        height={48}
+      />
+      <span className="mt-2 text-sm">{name}</span>
+      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-3 py-1 rounded-md text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+        {name}
+      </div>
+    </motion.div>
+  );
+}
+
 export function Hero() {
+  const techStack: TechIconProps[] = [
+    { name: "C#", icon: "CSharp.svg" },
+    { name: ".NET Core", icon: "NET core.svg" },
+    { name: "Azure", icon: "Azure.svg" },
+    { name: "React", icon: "React.svg" },
+    { name: "TypeScript", icon: "TypeScript.svg" },
+    { name: "JavaScript", icon: "JavaScript.svg" },
+    { name: "Node.js", icon: "Node.js.svg" },
+    { name: "HTML5", icon: "HTML5.svg" },
+    { name: "CSS3", icon: "CSS3.svg" },
+    { name: "Tailwind CSS", icon: "Tailwind CSS.svg" },
+    { name: "Firebase", icon: "Firebase.svg" },
+    { name: "Selenium", icon: "Selenium.svg" },
+    { name: "Postman", icon: "Postman.svg" },
+    { name: "NPM", icon: "NPM.svg" },
+    { name: "jQuery", icon: "jQuery.svg" },
+    { name: "Java", icon: "Java.svg" },
+    { name: "AngularJS", icon: "AngularJS.svg" },
+  ];
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}      className="min-h-screen flex flex-col justify-center items-center text-center pt-32"
+      transition={{ duration: 0.5 }}
+      className="min-h-screen flex flex-col justify-center items-center text-center pt-32"
     >
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
@@ -33,9 +78,10 @@ export function Hero() {
             Full Stack Developer
           </span>
         </h1>
-        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          And my name is Omar Gutierrez. I&apos;m a software engineer from México with 5+ years
-          of experience creating excellent and appealing software solutions.
+        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" style={{ marginRight: '10px', marginLeft: '10px' }}>
+          My name is Omar Gutierrez. I&apos;m a software engineer from México city with over +9 years of experience
+          in the software industry (since 2016), My area of expertise is in back-end and front-end web development, I have
+          worked on a variety of projects, from small startups to large enterprises, I'm always eager to learn new technologies and improve my skills.
         </p>
       </motion.div>
 
@@ -72,16 +118,15 @@ export function Hero() {
         >
           Contact Me
         </a>
-      </motion.div>
-
-      <motion.div
+      </motion.div>      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-2xl mx-auto"
+        className="mt-16 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-4xl mx-auto"
       >
-        {/* We'll add your tech stack icons here */}
-        {/* You can add them as SVGs or images later */}
+        {techStack.map((tech) => (
+          <TechIcon key={tech.name} {...tech} />
+        ))}
       </motion.div>
     </motion.section>
   );

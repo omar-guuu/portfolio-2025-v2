@@ -46,11 +46,9 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
         className="flex flex-col sm:flex-row gap-4 mt-8"
-      >
-        <a
-          href="/files/CV2021ENG_C.pdf"
+      >        <a
+          href="#cv"
           className="px-8 py-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-          download
         >
           <svg
             className="w-5 h-5"
@@ -63,10 +61,10 @@ export function Hero() {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
             />
           </svg>
-          Download CV
+          View CV
         </a>
         <a
           href="#contact"

@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 import { ThemeToggle } from './ThemeToggle';
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuItems = [
+  const [isMenuOpen, setIsMenuOpen] = useState(false);  const menuItems = [
     { href: '/', label: 'Home' },
+    { href: '#skills', label: 'Skills' },
     { href: '#projects', label: 'Experience' },
     { href: '#contact', label: 'Contact' },
   ];

@@ -1,42 +1,82 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-interface SkillCategory {
-  title: string;
-  skills: {
-    name: string;
-    icon?: string;
-    proficiency?: number;
-  }[];
+interface TechIconProps {
+  name: string;
+  icon: string;
 }
 
 export function Skills() {
-  const skillCategories: SkillCategory[] = [
-    {
-      title: "Programming Languages",
-      skills: [
-        { name: "C#", proficiency: 90 },
-        { name: "JavaScript", proficiency: 95 },
-        { name: "TypeScript", proficiency: 90 },
-        { name: "Java", proficiency: 80 },
-      ]
-    },
+  const skillClusters = [
     {
       title: "Frontend Development",
-      skills: [
-        { name: "React", proficiency: 90 },
-        { name: "Angular", proficiency: 85 },
-        { name: "Next.js", proficiency: 85 },
-        { name: "Tailwind CSS", proficiency: 90 },
+      description: "Building responsive and interactive user interfaces",
+      icons: [
+        { name: "React", icon: "React.svg" },
+        { name: "TypeScript", icon: "TypeScript.svg" },
+        { name: "JavaScript", icon: "JavaScript.svg" },
+        { name: "HTML5", icon: "HTML5.svg" },
+        { name: "CSS3", icon: "CSS3.svg" },
+        { name: "Tailwind CSS", icon: "Tailwind CSS.svg" },
+        { name: "AngularJS", icon: "AngularJS.svg" },
+        { name: "Vue.js", icon: "Vue.js.svg" },
+        { name: "Next.js", icon: "Next.js.svg" },
+        { name: "Bootstrap", icon: "Bootstrap.svg" },
+        { name: "jQuery", icon: "jQuery.svg" },
+        { name: "Vite.js", icon: "Vite.js.svg" },
       ]
     },
     {
-      title: "Database Technologies",
-      skills: [
-        { name: "MySQL", proficiency: 85 },
-        { name: "SQL Server", proficiency: 90 },
-        { name: "Firebase", proficiency: 80 },
+      title: "Backend Development",
+      description: "Creating robust and scalable server-side solutions",
+      icons: [
+        { name: "C#", icon: "CSharp.svg" },
+        { name: ".NET Core", icon: "NET core.svg" },
+        { name: ".NET", icon: "NET.svg" },
+        { name: "Node.js", icon: "Node.js.svg" },
+        { name: "Java", icon: "Java.svg" },
+        { name: "NGINX", icon: "NGINX.svg" },
+        { name: "WordPress", icon: "WordPress.svg" },
+      ]
+    },
+    {
+      title: "Database & Infrastructure",
+      description: "Database management and infrastructure solutions",
+      icons: [
+        { name: "MySQL", icon: "MySQL.svg" },
+        { name: "Microsoft SQL Server", icon: "Microsoft SQL Server.svg" },
+        { name: "Azure SQL Database", icon: "Azure SQL Database.svg" },
+        { name: "Firebase", icon: "Firebase.svg" },
+      ]
+    },
+    {
+      title: "Cloud & DevOps",
+      description: "Cloud infrastructure and development tools",
+      icons: [
+        { name: "Azure", icon: "Azure.svg" },
+        { name: "Azure DevOps", icon: "Azure Devops.svg" },
+        { name: "Git", icon: "Git.svg" },
+        { name: "GitHub", icon: "GitHub.svg" },
+        { name: "YAML", icon: "YAML.svg" },
+      ]
+    },
+    {
+      title: "Development Tools",
+      description: "Tools and utilities for efficient development",
+      icons: [
+        { name: "Visual Studio", icon: "Visual Studio.svg" },
+        { name: "VS Code", icon: "Visual Studio Code (VS Code).svg" },
+        { name: "NPM", icon: "NPM.svg" },
+        { name: "NuGet", icon: "NuGet.svg" },
+        { name: "Postman", icon: "Postman.svg" },
+        { name: "Selenium", icon: "Selenium.svg" },
+        { name: "Playwrite", icon: "Playwrite.svg" },
+        { name: "FileZilla", icon: "FileZilla.svg" },
+        { name: "Powershell", icon: "Powershell.svg" },
+        { name: "Figma", icon: "Figma.svg" },
+        { name: "Trello", icon: "Trello.svg" },
       ]
     }
   ];
@@ -53,62 +93,67 @@ export function Skills() {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
-      y: 0,
-      opacity: 1
+      opacity: 1,
+      y: 0
     }
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Technical Skills</h2>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            These are the technologies I have used throughout my career and use day to day to
-            build awesome solutions.
+          <h2 className="text-3xl font-bold mb-4">Technical Skills</h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            My technical expertise spans across various domains of software development,
+            from frontend to backend technologies and cloud solutions.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          {skillClusters.map((cluster, index) => (
             <motion.div
-              key={category.title}
+              key={cluster.title}
               variants={itemVariants}
-              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
             >
-              <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-700 dark:text-gray-300">{skill.name}</span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {skill.proficiency}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <motion.div
-                        className="bg-blue-600 h-2 rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.proficiency}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                      />
+              <h3 className="text-xl font-semibold mb-2">{cluster.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">
+                {cluster.description}
+              </p>
+              <div className="grid grid-cols-4 gap-4">
+                {cluster.icons.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="flex flex-col items-center group relative"
+                  >
+                    <Image
+                      src={`/images/tech/${tech.icon}`}
+                      alt={tech.name}
+                      width={48}
+                      height={48}
+                    />
+                    <span className="mt-2 text-sm">{tech.name}</span>
+                    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-3 py-1 rounded-md text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                      {tech.name}
                     </div>
                   </div>
                 ))}
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

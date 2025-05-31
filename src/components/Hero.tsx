@@ -3,64 +3,20 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-interface TechIconProps {
-  name: string;
-  icon: string;
-}
-
-function TechIcon({ name, icon }: TechIconProps) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.1 }}
-      className="flex flex-col items-center group relative"
-    >      <Image
-        src={`/images/tech/${icon}`}
-        alt={name}
-        width={48}
-        height={48}
-      />
-      <span className="mt-2 text-sm">{name}</span>
-      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-3 py-1 rounded-md text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-        {name}
-      </div>
-    </motion.div>
-  );
-}
-
 export function Hero() {
-  const techStack: TechIconProps[] = [
-    { name: "C#", icon: "CSharp.svg" },
-    { name: ".NET Core", icon: "NET core.svg" },
-    { name: "Azure", icon: "Azure.svg" },
-    { name: "React", icon: "React.svg" },
-    { name: "TypeScript", icon: "TypeScript.svg" },
-    { name: "JavaScript", icon: "JavaScript.svg" },
-    { name: "Node.js", icon: "Node.js.svg" },
-    { name: "HTML5", icon: "HTML5.svg" },
-    { name: "CSS3", icon: "CSS3.svg" },
-    { name: "Tailwind CSS", icon: "Tailwind CSS.svg" },
-    { name: "Firebase", icon: "Firebase.svg" },
-    { name: "Selenium", icon: "Selenium.svg" },
-    { name: "Postman", icon: "Postman.svg" },
-    { name: "NPM", icon: "NPM.svg" },
-    { name: "jQuery", icon: "jQuery.svg" },
-    { name: "Java", icon: "Java.svg" },
-    { name: "AngularJS", icon: "AngularJS.svg" },
-  ];
-
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen flex flex-col justify-center items-center text-center pt-32"
+      animate={{ opacity: 1, y: 0 }}      transition={{ duration: 0.5 }}
+      className="min-h-screen flex flex-col justify-center items-center text-center pt-32 pb-40"
     >
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2 }}
         className="mb-8 relative"
-      >        <div className="relative w-64 h-64 mb-8 mx-auto">
+      >
+        <div className="relative w-64 h-64 mb-8 mx-auto">
           <Image
             src="/images/omar-profile.jpg"
             alt="Omar Gutierrez"
@@ -118,15 +74,6 @@ export function Hero() {
         >
           Contact Me
         </a>
-      </motion.div>      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="mt-16 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 max-w-4xl mx-auto"
-      >
-        {techStack.map((tech) => (
-          <TechIcon key={tech.name} {...tech} />
-        ))}
       </motion.div>
     </motion.section>
   );

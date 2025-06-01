@@ -200,7 +200,8 @@ export function Projects() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Experience</h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            This is professional experience throughout the years and the technologies used.
+            This is professional experience throughout the years and the technologies used, please refeer to my
+            CV for a more detailed picture.
           </p>
         </motion.div>
 

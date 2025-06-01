@@ -25,14 +25,14 @@ export function CVPreview() {
               transition={{ duration: 0.2 }}
             >
               <Image
-                src="/images/CV2021ENG_C.jpg"
+                src="/images/CV2025ENG_C.png"
                 alt="CV Preview"
                 fill
                 className="object-contain"
                 quality={100}
               />
               <a
-                href="/files/CV2021ENG_C.pdf"
+                href="/files/CV2025ENG_C.pdf"
                 download
                 className="absolute bottom-4 right-4 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg"
               >

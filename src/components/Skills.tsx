@@ -3,10 +3,10 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-interface TechIconProps {
-  name: string;
-  icon: string;
-}
+// type TechIcon = {
+//   name: string;
+//   icon: string;
+// };
 
 export function Skills() {
   const skillClusters = [
@@ -122,7 +122,7 @@ export function Skills() {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {skillClusters.map((cluster, index) => (
+          {skillClusters.map((cluster) => (
             <motion.div
               key={cluster.title}
               variants={itemVariants}

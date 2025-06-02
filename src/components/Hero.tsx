@@ -34,10 +34,9 @@ export function Hero() {
             Full Stack Developer
           </span>
         </h1>
-        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" style={{ marginRight: '10px', marginLeft: '10px' }}>
-          My name is Omar Gutierrez. I&apos;m a software engineer from México city with over +9 years of experience
-          in the software industry (since 2016), my area of expertise is in back-end and front-end web development, I have
-          worked on a variety of projects, from small startups to large enterprises,          I&apos;m always eager to learn new technologies and improve my skills.
+        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" style={{ marginRight: '10px', marginLeft: '10px' }}>          My name is Omar Gutierrez. I&apos;m a software engineer from México city with over +9 years of experience
+          in the software industry (since 2016). My area of expertise is in back-end and front-end web development. I have
+          worked on a variety of projects, from small startups to large enterprises. I&apos;m always eager to learn new technologies and improve my skills.
         </p>
       </motion.div>
 

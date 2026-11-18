@@ -31,7 +31,7 @@ export const profile = {
   social: {
     linkedin: 'https://www.linkedin.com/in/omar-guuu/',
     github: 'https://github.com/omar-guuu',
-    medium: 'https://medium.com/@omarguu',
+    medium: 'https://omarguuu.medium.com/',
     twitter: 'https://twitter.com/omar_guuu',
     instagram: 'https://www.instagram.com/omar.guuu/',
     buyMeACoffee: 'https://www.buymeacoffee.com/omar.guuu',

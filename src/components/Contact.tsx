@@ -1,23 +1,8 @@
-'use client';
-
-import { useState } from 'react';
 import { profile } from '@/data/profile';
 import { Section } from './Section';
 import { GitHubIcon, LinkedInIcon, MailIcon, MediumIcon } from './Icons';
 
 export function Contact() {
-  const [copied, setCopied] = useState(false);
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(profile.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    } catch {
-      // Clipboard unavailable (e.g. insecure context): the mailto link still works.
-    }
-  };
-
   return (
     <Section
       id="contact"
@@ -27,25 +12,17 @@ export function Contact() {
       <div className="grid gap-6 md:grid-cols-2">
         <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-6">
           <h3 className="text-xl font-semibold">Email</h3>
-          <p className="mt-1 text-gray-700 dark:text-gray-300">The fastest way to reach me.</p>
-          <div className="mt-5 flex flex-wrap items-center gap-3">
+          <p className="mt-1 text-gray-700 dark:text-gray-300">
+            The fastest way to reach me: <span className="font-medium text-gray-950 dark:text-white break-all">{profile.email}</span>
+          </p>
+          <div className="mt-5">
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-blue-700 text-white font-medium hover:bg-blue-800 transition-colors break-all"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-blue-700 text-white font-medium hover:bg-blue-800 transition-colors"
             >
               <MailIcon />
-              {profile.email}
+              Send Email
             </a>
-            <button
-              type="button"
-              onClick={copyEmail}
-              className="px-4 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            >
-              {copied ? 'Copied!' : 'Copy address'}
-            </button>
-            <span role="status" className="sr-only">
-              {copied ? 'Email address copied to clipboard' : ''}
-            </span>
           </div>
         </div>
 

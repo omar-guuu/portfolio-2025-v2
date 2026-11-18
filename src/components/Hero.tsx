@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { profile } from '@/data/profile';
-import { DownloadIcon, GitHubIcon, LinkedInIcon, LocationIcon, MediumIcon } from './Icons';
+import { GitHubIcon, LinkedInIcon, LocationIcon, MediumIcon } from './Icons';
 
 export function Hero() {
   return (
@@ -38,12 +38,10 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href={profile.cv.pdf}
-                download
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-700 text-white font-medium hover:bg-blue-800 transition-colors"
+                href="#resume"
+                className="inline-flex items-center px-6 py-3 rounded-full bg-blue-700 text-white font-medium hover:bg-blue-800 transition-colors"
               >
-                <DownloadIcon />
-                Download CV
+                Navigate to CV
               </a>
               <a
                 href="#contact"

@@ -48,11 +48,10 @@ export function Navbar() {
               ))}
             </ul>
             <a
-              href={profile.cv.pdf}
-              download
+              href="#resume"
               className="ml-3 px-4 py-2 rounded-full text-sm font-medium bg-blue-700 text-white hover:bg-blue-800 transition-colors"
             >
-              Download CV
+              Navigate to CV
             </a>
             <div className="ml-2">
               <ThemeToggle />
@@ -98,12 +97,11 @@ export function Navbar() {
           ))}
           <li>
             <a
-              href={profile.cv.pdf}
-              download
+              href="#resume"
               className="block px-3 py-2 rounded-md text-base font-medium text-blue-700 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-800"
               onClick={() => setIsMenuOpen(false)}
             >
-              Download CV (PDF)
+              Navigate to CV
             </a>
           </li>
         </ul>

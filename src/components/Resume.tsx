@@ -31,7 +31,7 @@ export function Resume() {
               Resume
             </h3>
             <p className="text-lg text-gray-800 dark:text-gray-200 max-w-xl">
-              A one-page PDF with my full work history, ready to share with your hiring team.
+              A one-page PDF with my full work history, ready to share with your hiring team, download or see in browser, whatever suits you better.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a

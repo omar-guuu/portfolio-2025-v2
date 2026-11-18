@@ -3,21 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --foreground: #000000;
+  --foreground: #030712;
   --background: #ffffff;
 }
 
 .dark {
-  --foreground: #ffffff;
-  --background: #000000;
+  --foreground: #f9fafb;
+  --background: #030712;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Smooth anchor scrolling only for users who haven't asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Keep section headings visible below the fixed navbar when jumping to an anchor. */
+section[id] {
+  scroll-margin-top: 4.5rem;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Clear, consistent keyboard focus indicator on every interactive element. */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.dark :focus-visible {
+  outline-color: #60a5fa;
 }

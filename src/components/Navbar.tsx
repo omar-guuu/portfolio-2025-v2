@@ -1,97 +1,113 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
+import { profile } from '@/data/profile';
+
+const menuItems = [
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#resume', label: 'Resume' },
+  { href: '#contact', label: 'Contact' },
+];
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);  const menuItems = [
-    { href: '/', label: 'Home' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Experience' },
-    { href: '#contact', label: 'Contact' },
-  ];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close the mobile menu with Escape.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isMenuOpen]);
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-black/80 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="font-bold text-xl">
-              Omar.Guuu
-            </Link>
-          </div>          {/* Desktop menu */}
-          <div className="hidden sm:flex sm:items-center">
-            {menuItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="ml-8 text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="ml-8">
+    <header className="fixed top-0 w-full bg-white/85 dark:bg-gray-950/85 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
+      <nav aria-label="Main" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <a href="#about" className="font-bold text-xl tracking-tight">
+            {profile.shortName}
+          </a>
+
+          {/* Desktop menu */}
+          <div className="hidden md:flex md:items-center md:gap-1">
+            <ul className="flex items-center gap-1">
+              {menuItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-950 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-800 transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={profile.cv.pdf}
+              download
+              className="ml-3 px-4 py-2 rounded-full text-sm font-medium bg-blue-700 text-white hover:bg-blue-800 transition-colors"
+            >
+              Download CV
+            </a>
+            <div className="ml-2">
               <ThemeToggle />
             </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center sm:hidden">
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+              type="button"
+              onClick={() => setIsMenuOpen((open) => !open)}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
-              <span className="sr-only">Open main menu</span>
-              {!isMenuOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+              <span className="sr-only">{isMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                {isMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              )}
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
             </button>
           </div>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile menu */}
-      <motion.div
-        className={`sm:hidden ${isMenuOpen ? 'block' : 'hidden'}`}
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-      >        <div className="px-2 pt-2 pb-3 space-y-1">
+      <div id="mobile-menu" hidden={!isMenuOpen} className="md:hidden border-t border-gray-200 dark:border-gray-800">
+        <ul className="px-2 pt-2 pb-3 space-y-1">
           {menuItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="block px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+            <li key={item.href}>
+              <a
+                href={item.href}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href={profile.cv.pdf}
+              download
+              className="block px-3 py-2 rounded-md text-base font-medium text-blue-700 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-800"
               onClick={() => setIsMenuOpen(false)}
             >
-              {item.label}
-            </Link>
-          ))}
-          <div className="px-3 py-2">
-            <ThemeToggle />
-          </div>
-        </div>
-      </motion.div>
-    </nav>
+              Download CV (PDF)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
   );
 }

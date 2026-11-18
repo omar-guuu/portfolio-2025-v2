@@ -2,76 +2,122 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { profile } from '@/data/profile';
+import { DownloadIcon, GitHubIcon, LinkedInIcon, LocationIcon, MediumIcon } from './Icons';
 
 export function Hero() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}      transition={{ duration: 0.5 }}
-      className="min-h-screen flex flex-col justify-center items-center text-center pt-32 pb-40"
-    >
-      <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="mb-8 relative"
-      >
-        <div className="relative w-64 h-64 mb-8 mx-auto">
-          <Image
-            src="/images/omar-profile.jpg"
-            alt="Omar Gutierrez"
-            fill
-            className="rounded-full object-cover shadow-lg border-4 border-white dark:border-gray-800"
-            sizes="(max-width: 768px) 256px, 256px"
-            priority
-            quality={95}
-            style={{ objectPosition: '50% 30%' }}
-          />
-        </div>
-        <h1 className="text-4xl sm:text-6xl font-bold mb-4">
-          Hi, I&apos;m a{' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-            Full Stack Developer
-          </span>
-        </h1>
-        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" style={{ marginRight: '10px', marginLeft: '10px' }}>          My name is Omar Gutierrez. I&apos;m a software engineer from México city with over +9 years of experience
-          in the software industry (since 2016). My area of expertise is in back-end and front-end web development. I have
-          worked on a variety of projects, from small startups to large enterprises. I&apos;m always eager to learn new technologies and improve my skills.
-        </p>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="flex flex-col sm:flex-row gap-4 mt-8"
-      >        <a
-          href="#cv"
-          className="px-8 py-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+    <section id="about" aria-labelledby="about-heading" className="pt-28 pb-20 sm:pt-36 sm:pb-28 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="order-2 lg:order-1"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-          View CV
-        </a>
-        <a
-          href="#contact"
-          className="px-8 py-3 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        >
-          Contact Me
-        </a>
-      </motion.div>
-    </motion.section>
+            <h1 id="about-heading" className="text-4xl sm:text-6xl font-bold tracking-tight">
+              {profile.name}
+            </h1>
+            <p className="mt-3 text-2xl sm:text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-teal-700 dark:from-blue-400 dark:to-teal-300">
+              {profile.title}
+            </p>
+
+            <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-gray-700 dark:text-gray-300">
+              <span className="inline-flex items-center gap-1">
+                <LocationIcon />
+                {profile.location}
+              </span>
+              <span aria-hidden="true" className="text-gray-400">•</span>
+              <span>{profile.workPreference}</span>
+            </p>
+
+            <p className="mt-6 text-lg sm:text-xl text-gray-800 dark:text-gray-200 max-w-2xl">
+              {profile.headline}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={profile.cv.pdf}
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-700 text-white font-medium hover:bg-blue-800 transition-colors"
+              >
+                <DownloadIcon />
+                Download CV
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                Get in touch
+              </a>
+              <a
+                href={profile.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="LinkedIn profile (opens in a new tab)"
+              >
+                <LinkedInIcon />
+              </a>
+              <a
+                href={profile.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="GitHub profile (opens in a new tab)"
+              >
+                <GitHubIcon />
+              </a>
+              <a
+                href={profile.social.medium}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Blog on Medium (opens in a new tab)"
+              >
+                <MediumIcon />
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.15, duration: 0.4 }}
+            className="order-1 lg:order-2 mx-auto"
+          >
+            <div className="relative w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72">
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-blue-600/30 to-teal-500/30 blur-xl" aria-hidden="true" />
+              <Image
+                src={profile.photo}
+                alt={`Portrait of ${profile.name}`}
+                fill
+                className="relative rounded-full object-cover shadow-xl border-4 border-white dark:border-gray-800"
+                sizes="(max-width: 640px) 160px, (max-width: 1024px) 224px, 288px"
+                priority
+                style={{ objectPosition: '50% 30%' }}
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* About */}
+        <div className="mt-16 grid gap-6 lg:grid-cols-[200px_1fr]">
+          <h2 className="text-2xl font-bold">About me</h2>
+          <div className="space-y-4 text-lg text-gray-800 dark:text-gray-200 max-w-3xl">
+            {profile.summary.map((paragraph) =>
+              typeof paragraph === 'string' ? (
+                <p key={paragraph}>{paragraph}</p>
+              ) : (
+                <p key={paragraph.text} className="text-xl sm:text-2xl font-bold text-gray-950 dark:text-white">
+                  {paragraph.text}
+                </p>
+              )
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

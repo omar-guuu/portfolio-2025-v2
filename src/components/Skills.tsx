@@ -44,7 +44,14 @@ export function Skills() {
               {cluster.icons.map((tech) => (
                 <li key={tech.name} className="flex flex-col items-center text-center">
                   {/* alt="" because the visible label below already names the technology. */}
-                  <Image src={`/images/tech/${tech.icon}`} alt="" width={40} height={40} className="h-10 w-10 object-contain" />
+                  {/* Dark single-color logos are rendered white in dark mode so they stay visible. */}
+                  <Image
+                    src={`/images/tech/${tech.icon}`}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className={`h-10 w-10 object-contain ${'whiteInDark' in tech && tech.whiteInDark ? 'dark:brightness-0 dark:invert' : ''}`}
+                  />
                   <span className="mt-2 text-sm leading-tight">{tech.name}</span>
                 </li>
               ))}
